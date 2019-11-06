@@ -43,10 +43,13 @@
 /******************************************************************************/
 #include "TIME.h"
 
+#include <unistd.h>
+#include <sys/time.h>
+
 /******************************************************************************/
 /************************ Variables Declarations ******************************/
 /******************************************************************************/
-
+static struct timeval START_TIME;
 
 /******************************************************************************/
 /************************ Functions Definitions *******************************/
@@ -62,6 +65,7 @@
 unsigned char TIME_Init(void)
 {
     // Add your code here.
+    return 1;
 }
 
 /***************************************************************************//**
@@ -72,7 +76,7 @@ unsigned char TIME_Init(void)
 *******************************************************************************/
 void TIME_StartMeasure(void)
 {
-    // Add your code here.
+    gettimeofday(&START_TIME, NULL);
 }
 
 /***************************************************************************//**
@@ -82,7 +86,15 @@ void TIME_StartMeasure(void)
 *******************************************************************************/
 unsigned long TIME_StopMeasure(void)
 {
-    // Add your code here.
+    struct timeval end_time;
+
+    gettimeofday(&end_time, NULL);
+
+    unsigned long elapsed = 
+        ((end_time.tv_sec - START_TIME.tv_sec)*1000000) +
+        (end_time.tv_usec - START_TIME.tv_usec);
+    
+    return elapsed;
 }
 
 /***************************************************************************//**
@@ -92,7 +104,7 @@ unsigned long TIME_StopMeasure(void)
 *******************************************************************************/
 void TIME_DelayUs(unsigned short usUnits)
 {
-    // Add your code here.
+    usleep(usUnits);
 }
 
 /***************************************************************************//**
@@ -102,5 +114,5 @@ void TIME_DelayUs(unsigned short usUnits)
 *******************************************************************************/
 void TIME_DelayMs(unsigned short msUnits)
 {
-    // Add your code here.
+    usleep(msUnits*1000);
 }

@@ -88,7 +88,7 @@
 /* Mode Register Bit Designations (AD7190_REG_MODE) */
 #define AD7190_MODE_SEL(x)      (((x) & 0x7) << 21) // Operation Mode Select.
 #define AD7190_MODE_DAT_STA     (1 << 20)           // Status Register transmission.
-#define AD7190_MODE_CLKSRC(x)   ((x) & 0x3) << 18)  // Clock Source Select.
+#define AD7190_MODE_CLKSRC(x)   (((x) & 0x3) << 18) // Clock Source Select.
 #define AD7190_MODE_SINC3       (1 << 15)           // SINC3 Filter Select.
 #define AD7190_MODE_ENPAR       (1 << 13)           // Parity Enable.
 #define AD7190_MODE_SCYCLE      (1 << 11)           // Single cycle conversion.

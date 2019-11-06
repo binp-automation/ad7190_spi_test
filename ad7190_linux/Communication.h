@@ -1,6 +1,6 @@
 /***************************************************************************//**
- *   @file   Communication.c
- *   @brief  Implementation of Communication Driver.
+ *   @file   Communication.h
+ *   @brief  Header file of Communication Driver.
  *   @author DBogdan (dragos.bogdan@analog.com)
 ********************************************************************************
  * Copyright 2012-2015(c) Analog Devices, Inc.
@@ -37,72 +37,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
 *******************************************************************************/
+#ifndef _COMMUNICATION_H_
+#define _COMMUNICATION_H_
+
+#define GPIO1_STATE       0
+#define ADI_PART_CS_LOW   0
+#define ADI_PART_CS_HIGH  0
 
 /******************************************************************************/
 /* Include Files                                                              */
 /******************************************************************************/
-#include "Communication.h"
 
-/***************************************************************************//**
- * @brief Initializes the SPI communication peripheral.
- *
- * @param lsbFirst - Transfer format (0 or 1).
- *                   Example: 0x0 - MSB first.
- *                            0x1 - LSB first.
- * @param clockFreq - SPI clock frequency (Hz).
- *                    Example: 1000 - SPI clock frequency is 1 kHz.
- * @param clockPol - SPI clock polarity (0 or 1).
- *                   Example: 0x0 - Idle state for clock is a low level; active
- *                                  state is a high level;
- *	                      0x1 - Idle state for clock is a high level; active
- *                                  state is a low level.
- * @param clockEdg - SPI clock edge (0 or 1).
- *                   Example: 0x0 - Serial output data changes on transition
- *                                  from idle clock state to active clock state;
- *                            0x1 - Serial output data changes on transition
- *                                  from active clock state to idle clock state.
- *
- * @return status - Result of the initialization procedure.
- *                  Example: 1 - if initialization was successful;
- *                           0 - if initialization was unsuccessful.
-*******************************************************************************/
+/******************************************************************************/
+/* Functions Prototypes                                                       */
+/******************************************************************************/
+
+/*! Initializes the SPI communication peripheral. */
 unsigned char SPI_Init(unsigned char lsbFirst,
                        unsigned long clockFreq,
                        unsigned char clockPol,
-                       unsigned char clockEdg)
-{
-    /* Add your code here. */
-}
+                       unsigned char clockEdg);
 
-/***************************************************************************//**
- * @brief Reads data from SPI.
- *
- * @param slaveDeviceId - The ID of the selected slave device.
- * @param data - Data represents the write buffer as an input parameter and the
- *               read buffer as an output parameter.
- * @param bytesNumber - Number of bytes to read.
- *
- * @return Number of read bytes.
-*******************************************************************************/
+/*! Reads data from SPI. */
 unsigned char SPI_Read(unsigned char slaveDeviceId,
                        unsigned char* data,
-                       unsigned char bytesNumber)
-{
-    /* Add your code here. */
-}
+                       unsigned char bytesNumber);
 
-/***************************************************************************//**
- * @brief Writes data to SPI.
- *
- * @param slaveDeviceId - The ID of the selected slave device.
- * @param data - Data represents the write buffer.
- * @param bytesNumber - Number of bytes to write.
- *
- * @return Number of written bytes.
-*******************************************************************************/
+/*! Writes data to SPI. */
 unsigned char SPI_Write(unsigned char slaveDeviceId,
                         unsigned char* data,
-                        unsigned char bytesNumber)
-{
-    /* Add your code here. */
-}
+                        unsigned char bytesNumber);
+
+#endif /* _COMMUNICATION_H_ */
