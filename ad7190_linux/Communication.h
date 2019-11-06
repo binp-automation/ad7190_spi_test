@@ -40,13 +40,10 @@
 #ifndef _COMMUNICATION_H_
 #define _COMMUNICATION_H_
 
-#define GPIO1_STATE       0
-#define ADI_PART_CS_LOW   0
-#define ADI_PART_CS_HIGH  0
-
 /******************************************************************************/
 /* Include Files                                                              */
 /******************************************************************************/
+#include "gpio.h"
 
 /******************************************************************************/
 /* Functions Prototypes                                                       */

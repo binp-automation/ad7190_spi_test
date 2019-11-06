@@ -8,8 +8,8 @@ all: ad7190.so
 ad7190.so: $(OBJS)
 	gcc $^ -shared -o $@
 
-%.o: %.cpp *.h
-	g++ -fPIC -I. -c $< -o $@
+%.o: %.c *.h
+	gcc -fPIC -I. -c $< -o $@
 
 clean:
 	rm -f *.so *.o

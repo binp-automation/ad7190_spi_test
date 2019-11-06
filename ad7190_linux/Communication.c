@@ -81,12 +81,12 @@ unsigned char SPI_Init(unsigned char lsbFirst,
 {
     int ret;
 
-    SPI_DEV.mode = (clockPol*SPI_CPOL) | (clockEdg*SPI_CPHA);
+    SPI_DEV.mode = ((!!clockPol)*SPI_CPOL) | ((!clockEdg)*SPI_CPHA);
     SPI_DEV.speed = clockFreq;
     SPI_DEV.bits = 8;
     SPI_DEV.delay = 0;
     
-    ret = spi_dev_open(&SPI_DEV, "/dev/spidev1.1");
+    ret = spi_dev_open(&SPI_DEV, "/dev/spidev1.0");
     if (ret != 0) {
         return 0;
     }
@@ -114,7 +114,7 @@ unsigned char SPI_Read(unsigned char slaveDeviceId,
         return 0;
     }
 
-    ret = spi_dev_transfer(&SPI_DEV, NULL, data, bytesNumber);
+    ret = spi_dev_transfer(&SPI_DEV, data, data, bytesNumber);
     if (ret != 0) {
         return 0;
     }
